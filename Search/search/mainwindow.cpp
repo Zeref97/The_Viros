@@ -69,8 +69,12 @@ void MainWindow::on_ok_btn_clicked() //lấy dữ liệu
             std::string t=time.toUtf8().constData();
             location = PATH+location+TYPE;
             std::string loc = location.toUtf8().constData();
-
+            std::cout<<loc;
             cv::Mat img = cv::imread(loc);
+            if(img.empty()) {
+                QMessageBox::information(this,"LỖI RỒI","Không tìm thấy ảnh.");
+                return;
+                }
             cv::namedWindow(t,cv::WINDOW_AUTOSIZE);
             cv::imshow(t, img);
 
